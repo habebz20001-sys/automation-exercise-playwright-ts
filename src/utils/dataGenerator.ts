@@ -15,9 +15,6 @@ export interface User {
 }
 
 export class DataGenerator {
-  /**
-   * Generate a random user with all required details
-   */
   static generateUser(): User {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
@@ -41,16 +38,10 @@ export class DataGenerator {
     };
   }
 
-  /**
-   * Generate a random email
-   */
   static generateEmail(): string {
     return faker.internet.email().toLowerCase();
   }
 
-  /**
-   * Generate a random password
-   */
   static generatePassword(): string {
     return faker.internet.password({
       length: 12,
@@ -59,16 +50,10 @@ export class DataGenerator {
     });
   }
 
-  /**
-   * Generate random product name
-   */
   static generateProductName(): string {
     return faker.commerce.productName();
   }
 
-  /**
-   * Generate random message
-   */
   static generateMessage(length: number = 100): string {
     return faker.lorem.paragraph(length);
   }

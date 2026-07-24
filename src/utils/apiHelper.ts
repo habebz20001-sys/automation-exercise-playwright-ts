@@ -9,10 +9,6 @@ export class ApiHelper {
     this.request = request;
   }
 
-  /**
-   * Create an account via API
-   * This accelerates test setup by avoiding UI interactions
-   */
   async createAccountApi(user: User): Promise<any> {
     const response = await this.request.post(`${this.baseURL}/createAccount`, {
       form: {
@@ -40,18 +36,12 @@ export class ApiHelper {
     return data;
   }
 
-  /**
-   * Get all products via API
-   */
   async getAllProducts(): Promise<any> {
     const response = await this.request.get(`${this.baseURL}/productList`);
     const data = await response.json();
     return data;
   }
 
-  /**
-   * Get product details by ID
-   */
   async getProductDetails(productId: number): Promise<any> {
     const response = await this.request.get(
       `${this.baseURL}/product?id=${productId}`
@@ -60,9 +50,6 @@ export class ApiHelper {
     return data;
   }
 
-  /**
-   * Verify user account via API
-   */
   async verifyAccount(email: string, password: string): Promise<any> {
     const response = await this.request.post(
       `${this.baseURL}/verifyAccount`,
