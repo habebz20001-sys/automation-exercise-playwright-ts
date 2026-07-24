@@ -1,42 +1,79 @@
 import { APIRequestContext } from '@playwright/test';
+import { User } from './dataGenerator';
 
 export class ApiHelper {
-    readonly request: APIRequestContext;
+  readonly request: APIRequestContext;
+  readonly baseURL: string = 'https://automationexercise.com/api';
 
-    constructor(request: APIRequestContext) {
-        this.request = request;
-    }
+  constructor(request: APIRequestContext) {
+    this.request = request;
+  }
 
-    async createAccountApi(user: any) {
-        const response = await this.request.post('https://automationexercise.com/api/createAccount', {
-            form: {
-                name: user.name,
-                email: user.email,
-                password: user.password,
-                title: 'Mr',
-                birth_date: '10',
-                birth_month: '5',
-                birth_year: '1998',
-                firstname: user.firstName,
-                lastname: user.lastName,
-                company: user.company,
-                address1: user.address,
-                address2: '',
-                country: user.country,
-                zipcode: user.zipcode,
-                state: user.state,
-                city: user.city,
-                mobile_number: user.mobileNumber
-            }
-        });
-        return response;
-    }
-    async addToCartApi(productId: string, quantity: number = 1) {
-        return await this.request.post(`https://automationexercise.com/api/addToCart/${productId}`, {
-            form: {
-                product_id: productId,
-                quantity: quantity
-            }
-        });
-    }
+  /**
+   * Create an account via API
+   * This accelerates test setup by avoiding UI interactions
+   */
+  async createAccountApi(user: User): Promise<any> {
+    const response = await this.request.post(`${this.baseURL}/createAccount`, {
+      form: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        title: 'Mr',
+        birth_date: '01',
+        birth_month: '01',
+        birth_year: '1990',
+        firstname: user.firstName,
+        lastname: user.lastName,
+        company: user.company,
+        address1: user.address,
+        address2: '',
+        country: 'United States',
+        state: user.state,
+        city: user.city,
+        zipcode: user.zipCode,
+        mobile_number: user.mobileNumber,
+      },
+    });
+
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   * Get all products via API
+   */
+  async getAllProducts(): Promise<any> {
+    const response = await this.request.get(`${this.baseURL}/productList`);
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   * Get product details by ID
+   */
+  async getProductDetails(productId: number): Promise<any> {
+    const response = await this.request.get(
+      `${this.baseURL}/product?id=${productId}`
+    );
+    const data = await response.json();
+    return data;
+  }
+
+  /**
+   * Verify user account via API
+   */
+  async verifyAccount(email: string, password: string): Promise<any> {
+    const response = await this.request.post(
+      `${this.baseURL}/verifyAccount`,
+      {
+        form: {
+          email: email,
+          password: password,
+        },
+      }
+    );
+    const data = await response.json();
+    return data;
+  }
 }
