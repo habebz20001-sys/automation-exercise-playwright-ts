@@ -1,25 +1,10 @@
-# Dependencies
 node_modules/
-/.pnp
-.pnp.js
-
-# Build and temp
-/tmp
-/out-tsc
-sample.txt
+dist/
+*.log
+.DS_Store
+allure-results/
+allure-report/
 .env
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# IDE / Editor
-.vscode/
-
-# Playwright Test Results & Cache
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+.idea/
+test-results/
+playwright/.cache/
