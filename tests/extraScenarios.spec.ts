@@ -4,6 +4,7 @@ import { ContactUsPage } from '../src/pages/ContactUsPage';
 import { FooterPage } from '../src/pages/FooterPage';
 import { DataGenerator } from '../src/utils/dataGenerator';
 import * as path from 'path';
+import * as fs from 'fs';
 
 test.describe('Extended E2E Functionalities Suite', () => {
 
@@ -39,7 +40,7 @@ test.describe('Extended E2E Functionalities Suite', () => {
         await contactUsPage.navigateTo('/contact_us');
 
         const sampleFilePath = path.join(__dirname, 'sample.txt');
-        require('fs').writeFileSync(sampleFilePath, 'Sample log content for testing file upload');
+        fs.writeFileSync(sampleFilePath, 'Sample log content for testing file upload');
 
         await contactUsPage.submitContactForm(
             randomUser.name,
