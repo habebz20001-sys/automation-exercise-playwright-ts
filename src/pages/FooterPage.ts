@@ -1,21 +1,24 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage } from './BasePage';
 
-export class FooterPage extends BasePage {
-    readonly subscribeEmailInput: Locator;
-    readonly subscribeButton: Locator;
-    readonly successSubscribeAlert: Locator;
+export class FooterPage {
+  readonly page: Page;
+  readonly newsletterInput: Locator;
+  readonly subscribeButton: Locator;
+  readonly successSubscribeAlert: Locator;
 
-    constructor(page: Page) {
-        super(page);
+  constructor(page: Page) {
+    this.page = page;
+    this.newsletterInput = page.locator('input[data-qa="newsletter-email"]');
+    this.subscribeButton = page.locator('button[data-qa="subscribe-button"]');
+    this.successSubscribeAlert = page.locator('div.alert-success');
+  }
 
-        this.subscribeEmailInput = page.locator('#susbscribe_email');
-        this.subscribeButton = page.locator('#subscribe');
-        this.successSubscribeAlert = page.locator('.alert-success');
-    }
+  async navigateTo(path: string): Promise<void> {
+    await this.page.goto(path);
+  }
 
-    async subscribeToNewsletter(email: string) {
-        await this.subscribeEmailInput.fill(email);
-        await this.subscribeButton.click();
-    }
+  async subscribeToNewsletter(email: string): Promise<void> {
+    await this.newsletterInput.fill(email);
+    await this.subscribeButton.click();
+  }
 }
