@@ -1,13 +1,19 @@
 # Dependencies
 node_modules/
-/.pnp
+
+# Package manager
+.pnp
 .pnp.js
+
+# Environment variables
+.env
+.env.*
+!.env.example
 
 # Build and temp
 /tmp
 /out-tsc
 sample.txt
-.env
 
 # Logs
 npm-debug.log*
@@ -16,6 +22,10 @@ yarn-error.log*
 
 # IDE / Editor
 .vscode/
+.idea/
+
+# OS files
+.DS_Store
 
 # Playwright Test Results & Cache
 /test-results/
@@ -23,3 +33,7 @@ yarn-error.log*
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Allure
+/allure-results/
+/allure-report/
