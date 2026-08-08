@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "es2016",
     "module": "commonjs",
     "esModuleInterop": true,
@@ -9,4 +10,19 @@
     "outDir": "dist"
   },
   "include": ["src"]
+=======
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "lib": ["ES2022"]
+  },
+  "include": ["src", "tests"],
+  "exclude": ["node_modules", "dist"]
+>>>>>>> 28eae06b356a2bb681d3fb5a35207d8fae01a169
 }

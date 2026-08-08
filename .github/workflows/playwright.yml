@@ -10,7 +10,11 @@ jobs:
   test:
     timeout-minutes: 30
     runs-on: ubuntu-latest
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 28eae06b356a2bb681d3fb5a35207d8fae01a169
     strategy:
       fail-fast: false
       matrix:
@@ -52,4 +56,8 @@ jobs:
         with:
           name: allure-results
           path: allure-results/
+<<<<<<< HEAD
           retention-days: 30
+=======
+          retention-days: 30
+>>>>>>> 28eae06b356a2bb681d3fb5a35207d8fae01a169
